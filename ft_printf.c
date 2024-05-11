@@ -6,45 +6,59 @@
 /*   By: meguzqui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 21:30:42 by meguzqui          #+#    #+#             */
-/*   Updated: 2024/05/01 23:13:58 by meguzqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 23:11:52 by meguzqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
 
-void * val(char x, va_list aa)
+void	tipo(char c, va_list args)
 {
-	if (x == 'c')
-		putchar(va_arg(aa, int));
+	if (c == 'i')
+		ft_putnumbers(va_arg(args, int), 10);
+	if (c == 'c')
+		ft_putchar(va_arg(args, int));
+	if (c == 's')
+		ft_putstr(va_arg(args, char*));
+	if (c == 'd')
+		ft_putnumbers(va_arg(args, double), 10);
+	if (c == 'u')
+		ft_putnumbers(va_arg(args, double), 10);
+	if (c == 'p')
+		ft_putpoint(va_arg(args, unsigned long));
+	if (c == 'x')
+	if (c == 'X')
+	if (c == '%')
+		write (1, "%", 1);
 }
 
-int	ft_printf(char const * str, ...)
+int	ft_printf(char* str, ... )
 {
-	va_list	aa;
-	int	i;
+	int	cont;
+	va_list	args;
 
-	i = 0;
-	va_start(aa, str);
-	while(str[i] != '\0')
+	va_start(args, *str);
+	cont = 0;
+	while (str[cont] != '\0')
 	{
-		if (str[i] == '%')
+		if (str[cont] == '%')
 		{
-			val(str[i + 1], aa);
-			i++;
+			tipo (str[cont + 1], args);
+			cont++;
 		}
 		else
-			write (1, &str[i], 1);
-		i++;
+			write (1, &str[cont], 1);
+		cont++;
 	}
-	va_end(aa);
+	va_end(args);
+	return(cont);
 }
 
 int main()
 {
-	ft_printf("432%dmi función", 10);
-	printf("%d", 10);
+	char c = 'a';
+	int	x = -214748343;
+	ft_printf("%c%d\n", c, x);
+	printf("%c%d\n", c, x);
 	return 0;
 }
