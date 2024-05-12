@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ft_printf_h
-#define ft_printf_h
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <stdarg.h>
+# include <unistd.h>
 
-int	ft_printf(char * str, ... );
+int	ft_printf(char *str, ...);
 int	ft_putchar(char c);
-int	ft_putnumbers(long num, int base);
-int	ft_putstr(char* str);
+int	ft_putnumberlow(long num, int base);
+int	ft_puthexaupper(long num, int base);
+int	ft_putstr(char *str);
 int	ft_putpoint(unsigned long num);
 
 #endif
-

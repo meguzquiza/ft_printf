@@ -15,26 +15,28 @@
 void	tipo(char c, va_list args)
 {
 	if (c == 'i')
-		ft_putnumbers(va_arg(args, int), 10);
+		ft_putnumberlow(va_arg(args, int), 10);
 	if (c == 'c')
 		ft_putchar(va_arg(args, int));
 	if (c == 's')
-		ft_putstr(va_arg(args, char*));
-	if (c == 'd')
-		ft_putnumbers(va_arg(args, double), 10);
-	if (c == 'u')
-		ft_putnumbers(va_arg(args, double), 10);
+		ft_putstr(va_arg(args, char *));
 	if (c == 'p')
 		ft_putpoint(va_arg(args, unsigned long));
+	if (c == 'd')
+		ft_putnumberlow(va_arg(args, int), 10);
+	if (c == 'u')
+		ft_putnumberlow(va_arg(args, unsigned int), 10);
 	if (c == 'x')
+		ft_putnumberlow(va_arg(args, unsigned int), 16);
 	if (c == 'X')
+		ft_puthexaupper(va_arg(args, unsigned int), 16);
 	if (c == '%')
 		write (1, "%", 1);
 }
 
-int	ft_printf(char* str, ... )
+int	ft_printf(char *str, ...)
 {
-	int	cont;
+	int		cont;
 	va_list	args;
 
 	va_start(args, *str);
@@ -51,14 +53,16 @@ int	ft_printf(char* str, ... )
 		cont++;
 	}
 	va_end(args);
-	return(cont);
+	return (cont);
 }
 
 int main()
 {
 	char c = 'a';
-	int	x = -214748343;
-	ft_printf("%c%d\n", c, x);
-	printf("%c%d\n", c, x);
+	int	x = 2147483;
+	unsigned long p = 0x0;
+	void* pp = (void*)pp;
+	ft_printf("%p casa %d\n", pp, x);
+	printf("%p casa %d\n", pp, x);
 	return 0;
 }
